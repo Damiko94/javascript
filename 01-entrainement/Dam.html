@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Entrainement JS</title>
+    <style>
+      tr,
+      td {
+        border: 1px solid red;
+      }
+    </style>
+  </head>
+  <body>
+    <!--
+        On peut charger un fichier exterieur exemple entrainement.js,
+        ou bien coder directement son js dans la balise script
+    -->
+    <script>
+      /* Sommaire
+              01 -commentaires
+              02 -affichage
+              03 -variables
+              04 -types de données
+              05 -opérateurs (arithmétique)
+              06 -conditions
+              07 -boucles
+              08 -fonctions prédéfinis
+            */
+      /*----------------------commentaire------------------*/
+
+      // commentaire par ligne
+      document.write("<h2>01-Commentaires</h2>");
+      document.write("<p>(Voir code)</p>");
+
+      /*----------------------affichage------------------*/
+
+      document.write("<h2>02-Affichage</h2>");
+      // boite de dialogue
+      //alert("Salut");
+      // boite de dialogue avec bouton confirmation
+      //confirm("Etes-vous sure?");
+      //boite avec un champ à remplir
+      //prompt("Quel age as-tu?");
+
+      console.log("attention au erreur de symtaxe");
+      console.info("je suis pareil que console.log");
+
+      /*----------------------variables------------------*/
+
+      document.write("<h2>03-Variables</h2>");
+
+      /*
+            les mots clés var ou let permettent de déclarer nos variables (maBoite, maBoite2)
+            - déclaration = création d'une "boite virtuelle"
+            caractères acceptés : 0 à 9, de a à z, de A à Z, $ et _ (à ne pas utiliser en premier ou en dernier caractère)
+
+            */
+      var maBoite;
+      let maBoite2;
+
+      //j'affecte une valeur à ma boite
+
+      maBoite = 10;
+      maBoite2 = "dix";
+      document.write(maBoite);
+      console.log("le contenu de ma variable maBoite2 : " + maBoite2);
+
+      maBoite = 20;
+      document.write("<br>" + maBoite + " Es-ce correct?");
+
+      // declaration et affectation dans une meme instruction
+      var prenom = "Sylvie";
+      //declaration multiples
+      var nom = "Robert",
+        genre = "feminin",
+        age = 57;
+
+      document.write("<p>" + nom + " " + prenom + ", " + age + " ans.</p>");
+
+      let fruit = "Pomme";
+      //ajout d'une valeur sans remplacement du contenu d'origine (le = d'affectation est remplacé par +=)
+      fruit += " Fraise";
+      console.log(fruit);
+      var numb = 10;
+      numb += 1;
+      console.log(numb);
+      var maBoite3;
+      // j'échappe le caractère ' susceptible d'etre mal interprété (fermeture de la chaine de caractère) avec le \
+      console.log('aujourd"hui');
+
+      /*var monAge = prompt("Quel age avez-vous?");
+            console.info(monAge);
+
+            document.write("Vous avez : " + monAge + " ans.");
+            document.write(
+              "Vous avez : " + monAge * 12 * 24 * 60 * 60 + " secondes."
+            );*/
+
+      // declarations explicites
+      var maDecl1;
+      let maDecla2;
+      // declaration implicite
+      maDecla3 = "contenu de decla3";
+      console.log(maDecla2);
+      //ces differentes methodes de declarations de variables induisent une difference de portée pour ces variables (voir chapitres suivants)
+
+      // declare une constante, impossible de faire évoluer son contenu, par convention, elles s'écrivent en MAJUSCULE.
+      const VILLE = "Paris";
+      //essayer de changer une constante implique un message d'erreur, et la fin du code.
+      //VILLE = "Rouen";
+      console.log(VILLE);
+
+      /*----------------------commentaire------------------*/
+
+      document.write("<h2>04-Types de données</h2>");
+
+      //commençons par les trois principaux types de données dits primitifs.
+
+      //les types numériques (number)
+      //affectation tel quel sans simple et double quote
+      var chiffre = 20;
+      var negatif = -10; //tous les types numériques sont possibles
+      var decimal = 10.3; //utilisez un point pas une virgule
+      console.log(typeof negatif);
+
+      //les types chaines de caracteres (STRING)
+      var monTexte = "contenu de mon texte";
+      var numero = "10";
+      console.log(typeof numero);
+      console.log(typeof monTexte);
+
+      //types booléens (boolean)
+      //ce type ne prend que deux valeurs TRUE ou FALSE
+      var choix = true; // ou false
+      console.log(choix);
+
+      //typeof() permet de tester le type d'une variable
+      console.info(typeof chiffre);
+      console.info(typeof choix);
+      /*
+            var conf = confirm("etes vous sur?");
+            console.log(conf);*/
+
+      /*----------------------operateur arithmetique et comparaison------------------*/
+
+      document.write("<h2>05-opérateurs arithmétiques et comparaison</h2>");
+
+      //addition(+)
+      var resultat = 10 + 5;
+      document.write(resultat + "<br>");
+      //soustraction(-)
+      var resultat = 10 - 5;
+      document.write(resultat + "<br>");
+      //multiplication(*)
+      var resultat = 10 * 5;
+      document.write(resultat + "<br>");
+      //division(/)
+      var resultat = 10 / 5;
+      document.write(resultat + "<br>");
+      //modulo(%)
+      var resultat = 10 % 3;
+      document.write(resultat + "<br>");
+
+      //opérateur de comparaison
+      /*
+            Egal (==) : true si les operandes sont égales en valeur
+
+            Different de (!=) : true si les opérandes ne sont pas égales en valeur
+
+            Strictement Egal (===) : true si les operandes sont égales en valeur et en type
+
+            Strictement Different (!==) : true si les operandes sont differentes en valeur et en type
+
+            Supérieur à (>) : true si l'opérande de gauche et supérieur à celle de droite
+
+            Supérieur ou égal (>=) : true si l'opérande de gauche et supérieur ou égale à celle de droite
+
+            Inférieur à (>) : true si l'opérande de gauche et inférieur à celle de droite
+
+            Inférieur ou égal (>=) : true si l'opérande de gauche et inférieur ou égale à celle de droite
+
+            javascript compte trois opérateurs logiques:
+
+              -AND (et) : &&
+              - OR (ou): ||
+              -NOT (pas): !
+
+            AND : il evalue le resultat en true, si les deux expression sont true; Si l'une des est false alors le resultat sera false.
+              true && true : true
+              true && false : false
+              false && false : false
+            OR : il evalue le resultat en true, si l'une deux expression est true; Si les deux sont false alors le resultat sera false.
+              true || true : true
+              true || false : true
+              false || false : false
+            NOT : il transforme ce qui est true en false et ce qui est false en true
+              !true : false
+              !false : true
+            isNaN(VARIABLE) : is not a number.
+            */
+      var num = "mot";
+      if (!isNaN(num)) {
+        document.write("ceci est un nombre");
+      } else {
+        document.write("ceci n'est pas un nombre");
+      }
+
+      /*----------------------conditions------------------*/
+
+      document.write("<h2>06-Conditions</h2>");
+
+      //condition, structures conditionnelles
+
+      var a = "5",
+        b = 5,
+        c = 2;
+      if (a == b && a < c) {
+        document.write("Je rentre dans la condition");
+      } else {
+        document.write("essaye encore<br>");
+      }
+      // condition ternaires
+      var voiture = "mercedes";
+      document.write(
+        voiture == "bmw" ? document.write("oui<br>") : document.write("non<br>")
+      );
+
+      //conditions switch
+
+      /*var couleur = prompt("quel couleur aimez-vous?");
+            switch (couleur) {
+              case "bleu":
+                document.write("<br>vous aimez le bleu");
+                break;
+              case "rouge":
+                document.write("<br>vous aimez le rouge");
+                break;
+              case "vert":
+                document.write("<br>vous aimez le vert");
+                break;
+              case "marron":
+                document.write("<br>vous aimez le marron");
+                break;
+              default:
+                document.write(
+                  "<br>vous n'aimez ni le bleu, ni le rouge, ni le vert, ni le marron"
+                );
+            }
+            var couleur = prompt("Quel couleur aimez-vous?");
+            if (couleur == "bleu") {
+              document.write("<br>vous aimez le bleu");
+            } else if (couleur == "rouge") {
+              document.write("<br>vous aimez le rouge");
+            } else if (couleur == "vert") {
+              document.write("<br>vous aimez le vert");
+            } else if (couleur == "marron") {
+              document.write("<br>vous aimez le marron");
+            } else {
+              document.write(
+                "<br>vous n'aimez ni le bleu, ni le rouge, ni le vert, ni le marron"
+              );
+            }*/
+
+      /*petite devinette
+      var i = 0;
+      var eyes = prompt("De quel couleur sont mes yeux");
+      while (i < 2) {
+        if (eyes != "marron") {
+          eyes = prompt("Essaye encore, Choisis une nouvelle couleur");
+        } else {
+          alert("vous avez gagné");
+          i = 3;
+        }
+        i++;
+      }
+      alert("recharger la page pour rejouez");*/
+
+      /*var var_a = 10,
+        var_b = 10;
+
+      //structure conditionnelle pour tester le type de mes deux variables, si elle sont du meme type, ecrire : Les variables sont de meme type, sinon les variables sont de types different
+
+            if (typeof var_a == typeof var_b) {
+              document.write("<br>les variables sont de meme type et de meme valeur");
+            } else {
+              document.write("<br>les variables sont de type different");
+            }
+            console.log("Variable A : " + typeof var_a);
+            console.log("Variable B : " + typeof var_b);
+
+            var myText = "Bonjour";
+            console.log(myText.length);
+            console.log(myText.toUpperCase());
+            console.log(myText.substr(3, 4).toUpperCase()); */
+
+      /*----------------------commentaire------------------*/
+
+      document.write("<h2>07-Conditions</h2>");
+
+      // boucle WHILE
+      var i = 1;
+      while (i < 6) {
+        document.write(i + "---");
+        i++;
+        if (i == 6) {
+          document.write(i);
+        }
+      }
+
+      // presentation facultative
+
+      var couleur = false;
+      //prompt("Veuillez saisir une couleur, ou ecrivez stop.");
+      var stock = "";
+      while (couleur) {
+        if (couleur.toLowerCase() != "stop") {
+          stock += "<p>" + couleur + "</p>";
+          couleur = prompt("Veuillez saisir une couleur, ou ecrivez stop.");
+        } else {
+          couleur = false;
+        }
+      }
+      document.write(stock);
+
+      // boucle FOR
+      for (var p = 1; p <= 6; p++) {
+        if (p <= 5) {
+          document.write(p + "___");
+        } else {
+          document.write(p);
+        }
+      }
+
+      //boucle imbriquée
+      document.write("<table><tr>");
+      for (var k = 0; k < 100; k += 10) {
+        for (var j = k; j <= k + 9; j++) {
+          document.write("<td>" + j + "</td>");
+        }
+        document.write("</tr>");
+      }
+      document.write("</table>");
+
+      // boucle Do...While
+      // la boucle do...while permet d'executer un tour de boucle au minimum, quelques soient les conditions d'entrée dans la boucle.
+      var l = 5;
+      do {
+        document.write("<p>Ce code ne s'executera qu'une fois seulement</p>");
+        l++;
+      } while (l > 10);
+
+      /*----------------------fonctions prédéfinis------------------*/
+
+      document.write("<h2>08-fonctions prédéfinis</h2>");
+
+      var myText = "Bonjour Eddy";
+      var sonPrenom = "Eddy";
+      console.log(myText.lenght);
+      console.log(myText.toUpperCase());
+      console.log(myText.substr(myText.indexOf(sonPrenom), sonPrenom.lenght));
+
+      /*-----------------------fonctions utilisateur-------------------*/
+    </script>
+  </body>
+</html>
