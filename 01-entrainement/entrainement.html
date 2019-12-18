@@ -568,6 +568,35 @@
       }
       d("coucou me voilou");
       d("au revoir, à bientot");
+
+      /*modifier la fonction pour que quand on rentre printemps cela affiche au à la place de en
+	  faire en sorte que degré prenne un s seulement au-dessus de 1.9999*/
+      var pluriel = "";
+      function meteo(saison, temperature) {
+        if (temperature > 1 || temperature < -1) {
+          pluriel += "s";
+        }
+        if (saison.toLowerCase() == "printemps") {
+          return d(
+            "Nous sommes au " +
+              saison +
+              " et il fait " +
+              temperature +
+              " degré" +
+              pluriel
+          );
+        } else {
+          return d(
+            "Nous sommes en " +
+              saison +
+              " et il fait " +
+              temperature +
+              " degré" +
+              pluriel
+          );
+        }
+      }
+      meteo("hiver", -5);
     </script>
   </body>
 </html>
